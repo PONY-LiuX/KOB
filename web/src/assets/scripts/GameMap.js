@@ -3,12 +3,12 @@ import {Wall} from "./Wall";
 import {Snake} from "./Snake";
 
 export class GameMap extends AcGameObjects {
-    constructor(ctx, parent) {
+    constructor(ctx, parent, store) {
         super();
 
         this.ctx = ctx;
         this.parent = parent;
-     
+        this.store = store;
 
         //一个单位长度
         this.L = 0;
@@ -75,12 +75,12 @@ export class GameMap extends AcGameObjects {
                     d = 3;
                 }
 
-                // if (d >= 0) {
-                //     this.store.state.pk.socket.send(JSON.stringify({
-                //         event: "move",
-                //         direction: d,
-                //     }))
-                // }
+                if (d >= 0) {
+                    this.store.state.pk.socket.send(JSON.stringify({
+                        event: "move",
+                        direction: d,
+                    }))
+                }
             });
         }
     }
